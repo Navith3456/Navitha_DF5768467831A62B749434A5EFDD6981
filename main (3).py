@@ -1,27 +1,26 @@
-class BankAccount:
-    def __init__(self, balance=0):
-        self.balance = balance
+class Student:
 
-    def deposit(self, amount):
-        if amount > 0:
-            self.balance += amount
-            return f"Deposited ${amount}. New balance: ${self.balance}"
-        else:
-            return "Invalid deposit amount."
+  def __init__(self, name, roll_number, cgpa):
+    self.name = name
+    self.roll_number = roll_number
+    self.cgpa = cgpa
 
-    def withdraw(self, amount):
-        if 0 < amount <= self.balance:
-            self.balance -= amount
-            return f"Withdrew ${amount}. New balance: ${self.balance}"
-        else:
-            return "Invalid withdrawal amount or insufficient funds."
+def sort_students(student_list):
+  sorted_students = sorted(student_list,
+                          key=lambda student: student.cgpa,
+                          reverse=True)
+  return sorted_students
 
-# Create an instance of BankAccount
-account = BankAccount()
+students = [
+  Student("Hari", "A123", 7.8),
+  Student("Srikanth", "A124", 8.9),
+  Student("Saumya", "A125", 9.1),
+  Student("Mahidhar", "A126", 9.9),
+]
 
-# Test deposit functionality
-print(account.deposit(100))  # Deposited $100. New balance: $100
+sorted_students =sort_students(students)
 
-# Test withdrawal functionality
-print(account.withdraw(50))   # Withdrew $50. New balance: $50
-print(account.withdraw(75))   # Invalid withdrawal amount or insufficient funds.
+for student in sorted_students:
+  print("Name: {}, Roll Number : {}, CGPA: {}".format(student.name,
+                                                     student.roll_number, 
+                                                     student.cgpa))
